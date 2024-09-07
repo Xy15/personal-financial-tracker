@@ -11,3 +11,11 @@ A modern application to help you manage and track your personal finances. This a
 - **Database**: MySQL
 - **Cache**: Redis
 - **Containerization**: Docker
+
+The project uses Docker to containerize and orchestrate the following components:
+
+1. **MySQL Server**
+2. **Redis Server**
+3. **Backend App**
+4. **Frontend App**
+5. **Database Migration**
