@@ -29,22 +29,6 @@ const TransactionTable = () => {
       header: "Date",
     },
   ];
-  //   {
-  //     column1: "row1 data1",
-  //     column2: "row1 data2",
-  //     column3: "row1 data3",
-  //   },
-  //   {
-  //     column1: "row2 data1",
-  //     column2: "row2 data2",
-  //     column3: "row2 data3",
-  //   },
-  //   {
-  //     column1: "row3 data1",
-  //     column2: "row3 data2",
-  //     column3: "row3 data3",
-  //   },
-  // ];
 
   return (
     <>
