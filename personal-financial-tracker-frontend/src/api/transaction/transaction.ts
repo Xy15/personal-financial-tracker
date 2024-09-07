@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Transaction } from "../types"
+import { CreateTransactionReq, Transaction } from "../types"
 import { API_BASE_URL } from "../../constants/constants";
 
 export const getTransactionsByUserID = async (userID: string) => {
@@ -10,7 +10,7 @@ export const getTransactionsByUserID = async (userID: string) => {
   return transactions
 }
 
-export const postTransaction = async (data: Transaction) => {
+export const createTransaction = async (data: CreateTransactionReq) => {
   const response = await axios.post(`${API_BASE_URL}/transaction`, data)
 
   console.log("Post Transaction: ", response.data)

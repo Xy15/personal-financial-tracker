@@ -1,39 +1,34 @@
 import Table from "./Table";
 import { getTransactionsByUserID } from "../api/transaction/transaction";
 import { useQuery } from "react-query";
-import { GetTransactionRes } from "../api/types";
+import { Response, Transaction } from "../api/types";
 import { QUERY_KEYS, queryKeys } from "../api/queryKeys";
-import { userID } from "../constants/constants";
-
-export interface TransactionTableProps {
-  category: string;
-  description: string;
-  type: "in" | "out";
-  amount: number;
-}
+import { USER_ID } from "../constants/constants";
 
 const TransactionTable = () => {
-  const { isError, isLoading, data } = useQuery<GetTransactionRes[]>(
-    queryKeys[QUERY_KEYS.transaction].getTransactionsByUserID(userID).queryKey,
-    () => getTransactionsByUserID(userID),
+  const { isError, isLoading, data } = useQuery<Response<Transaction[]>>(
+    queryKeys[QUERY_KEYS.transaction].getTransactionsByUserID(USER_ID).queryKey,
+    () => getTransactionsByUserID(USER_ID),
   );
 
   const columns = [
     {
-      key: "column1",
-      name: "Header 1",
+      key: "category.name",
+      header: "Category",
     },
     {
-      key: "column2",
-      name: "Header 2",
+      key: "description",
+      header: "Description",
     },
     {
-      key: "column3",
-      name: "Header 3",
+      key: "amount",
+      header: "Amount",
+    },
+    {
+      key: "transaction_date",
+      header: "Date",
     },
   ];
-
-  // const tableData = [
   //   {
   //     column1: "row1 data1",
   //     column2: "row1 data2",
@@ -57,7 +52,7 @@ const TransactionTable = () => {
       {isError ? (
         <div>Error loading transaction...</div>
       ) : (
-        data && <Table tableCols={columns} tableData={data} />
+        data && <Table tableCols={columns} tableData={data.data} />
       )}
     </>
   );

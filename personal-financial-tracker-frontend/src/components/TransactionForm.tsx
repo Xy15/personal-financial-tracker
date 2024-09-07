@@ -1,29 +1,25 @@
 import Form from "./Form";
 import { InputProps, SelectOptionsProps } from "./Input";
 import { useMutation, useQueryClient } from "react-query";
-import { postTransaction } from "../api/transaction/transaction";
-import { Transaction } from "../api/types";
+import { createTransaction } from "../api/transaction/transaction";
+import { CreateTransactionReq } from "../api/types";
 import { QUERY_KEYS, queryKeys } from "../api/queryKeys";
-import { userID } from "../constants/constants";
+import { USER_ID } from "../constants/constants";
 
 interface TransactionFormProps {
   category_id: string;
   description: string;
-  type: "in" | "out";
+  type: "Income" | "Expense";
   amount: number;
 }
 
 const TransactionForm = () => {
-  // const [formData, setFormData] = useState<TransactionFormProps>();
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(postTransaction, {
-    // mutationFn: (transaction: Transaction) => {
-    //   return fetchPostTransactions(transaction);
-    // },
+  const { mutate } = useMutation(createTransaction, {
     onSuccess: (data) => {
       console.log("data", data);
-      queryClient.invalidateQueries(queryKeys[QUERY_KEYS.transaction].getTransactionsByUserID(userID).queryKey);
+      queryClient.invalidateQueries(queryKeys[QUERY_KEYS.transaction].getTransactionsByUserID(USER_ID).queryKey);
     },
     onError: (error) => {
       console.log("error", error);
@@ -32,10 +28,10 @@ const TransactionForm = () => {
 
   const onSubmit = (formData: TransactionFormProps) => {
     console.log("Form data submitted:", formData);
-    // setFormData(data);
-    const transaction: Transaction = {
+
+    const transaction: CreateTransactionReq = {
       ...formData,
-      user_id: "a65d8bd1-608f-448d-aa39-d01603dcf5cd",
+      user_id: USER_ID,
     };
 
     mutate(transaction);
@@ -75,15 +71,15 @@ const TransactionForm = () => {
     {
       name: "type",
       label: "Type",
-      // type: "select",
-      // options: [
-      //   { value: 'in', name: 'In' },
-      //   { value: 'out', name: 'Out' },
-      // ],
-      rules: {
-        validate: (value: string) =>
-          ["in", "out"].includes(value) || 'Type must be "in" or "out"',
-      },
+      type: "select",
+      options: [
+        { value: 'income', name: 'Income' },
+        { value: 'expense', name: 'Expense' },
+      ],
+      // rules: {
+      //   validate: (value: string) =>
+      //     ["in", "out"].includes(value) || 'Type must be "in" or "out"',
+      // },
     },
     {
       name: "amount",

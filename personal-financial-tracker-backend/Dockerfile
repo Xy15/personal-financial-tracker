@@ -25,8 +25,6 @@ RUN go build -o main .
 # Final Stage: Run the Go application
 FROM alpine:latest
 
-COPY ./assets /app/asset
-
 # Copy the Go application from the builder stage
 COPY --from=builder /app/main /app/main
 

@@ -6,7 +6,7 @@ import (
 )
 
 func ValidateRequestBody(body interface{}, ctx *fiber.Ctx) error {
-	if err := ctx.BodyParser(&body); err != nil {
+	if err := ctx.BodyParser(body); err != nil {
 		return err
 	}
 

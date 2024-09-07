@@ -7,13 +7,13 @@ import (
 	"gorm.io/gorm"
 )
 
-func TransactionRoutes(app *fiber.App, gdb *gorm.DB) {
+func TransactionRoutes(app *fiber.App, db *gorm.DB) {
 	transaction := app.Group("/transaction")
 
 	transaction.Get("/user/:user_id", func(c *fiber.Ctx) error {
-		return handler.GetTransactionsByUserID(c, gdb)
+		return handler.GetTransactionsByUserID(c, db)
 	})
 	transaction.Post("/", func(c *fiber.Ctx) error {
-		return handler.CreateTransaction(c, gdb)
+		return handler.CreateTransaction(c, db)
 	})
 }

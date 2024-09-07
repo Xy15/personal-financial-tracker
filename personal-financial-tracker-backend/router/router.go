@@ -6,10 +6,10 @@ import (
 	"gorm.io/gorm"
 )
 
-func SetupRoutes(app *fiber.App, gdb *gorm.DB) {
+func SetupRoutes(app *fiber.App, db *gorm.DB) {
 	SetupSwagger(app)
 
-	TransactionRoutes(app, gdb)
+	TransactionRoutes(app, db)
 }
 
 func SetupSwagger(app *fiber.App) {
