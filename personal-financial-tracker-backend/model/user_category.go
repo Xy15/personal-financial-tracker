@@ -15,6 +15,5 @@ type UserCategory struct {
 	CategoryImageID uuid.UUID     `json:"category_image_id"`
 	Name            string        `json:"name"`
 	Type            string        `json:"type"`
-	CategoryImage   CategoryImage `json:"category_image" gorm:"foreignKey:
-	;references:CategoryImageID"`
+	CategoryImage   CategoryImage `json:"category_image" gorm:"foreignKey:ID;references:CategoryImageID"`
 }
