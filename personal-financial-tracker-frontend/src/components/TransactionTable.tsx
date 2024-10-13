@@ -1,4 +1,4 @@
-import Table from "./Table";
+import Table, { TableCols } from "./common/Table";
 import { getTransactionsByUserID } from "../api/transaction/transaction";
 import { useQuery } from "react-query";
 import { Response, Transaction } from "../api/types";
@@ -11,7 +11,7 @@ const TransactionTable = () => {
     () => getTransactionsByUserID(USER_ID),
   );
 
-  const columns = [
+  const columns: TableCols[] = [
     {
       key: "category.name",
       header: "Category",
@@ -23,21 +23,23 @@ const TransactionTable = () => {
     {
       key: "amount",
       header: "Amount",
+      type: "amount",
     },
     {
       key: "transaction_date",
       header: "Date",
+      type: "date",
     },
   ];
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {/* {isLoading && <div>Loading...</div>}
       {isError ? (
         <div>Error loading transaction...</div>
       ) : (
         data && <Table tableCols={columns} tableData={data.data} />
-      )}
+      )} */}
     </>
   );
 };

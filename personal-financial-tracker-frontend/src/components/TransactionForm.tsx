@@ -1,5 +1,5 @@
-import Form from "./Form";
-import { InputProps, SelectOptionsProps } from "./Input";
+import Form from "./common/Form";
+import { InputProps, SelectOptionsProps } from "./common/Input";
 import { useMutation, useQueryClient } from "react-query";
 import { createTransaction } from "../api/transaction/transaction";
 import { CreateTransactionReq } from "../api/types";
@@ -7,7 +7,8 @@ import { QUERY_KEYS, queryKeys } from "../api/queryKeys";
 import { USER_ID } from "../constants/constants";
 
 interface TransactionFormProps {
-  category_id: string;
+  user_category_id: string;
+  transaction_date: string;
   description: string;
   type: "Income" | "Expense";
   amount: number;
@@ -63,6 +64,10 @@ const TransactionForm = () => {
       label: "Category",
       type: "select",
       options: categoryList,
+    },
+    {
+      name: "transaction_date",
+      label: "Date",
     },
     {
       name: "description",

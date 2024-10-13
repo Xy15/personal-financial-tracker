@@ -13,12 +13,7 @@ services:
 
   mysql_db:
     image: mysql:latest
-    # build:
-    #   context: .
-      # dockerfile: ./mysql/Dockerfile.mysql
-    # container_name: mysql_db
-    # env_file:
-    #   - ./personal-financial-tracker-backend/.env
+    container_name: mysql_db
     environment:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
@@ -62,6 +57,7 @@ services:
   backend_app:
     build:
       context: ./personal-financial-tracker-backend
+    container_name: backend
     ports:
       - "8081:8080"
     volumes:
@@ -69,7 +65,7 @@ services:
     environment:
       MYSQL_DATABASE_URL: ${MYSQL_DATABASE_URL}
       MYSQL_DSN: ${MYSQL_DSN}
-      SECRET: ${SECRET}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       HOST: ${HOST}
       API_BASE_URL: ${API_BASE_URL}
     networks:
@@ -83,6 +79,7 @@ services:
   frontend_app:
     build:
       context: ./personal-financial-tracker-frontend
+    container_name: frontend
     environment:
       API_BASE_URL: ${API_BASE_URL}
     ports:

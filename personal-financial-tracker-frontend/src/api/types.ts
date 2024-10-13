@@ -22,20 +22,26 @@ export interface Category {
   category_image: CategoryImage;
 }
 
+export type GroupedTransactions = {
+  [date: string]: Transaction[];
+};
+
 export interface Transaction {
+  amount: number;
+  category_image_url: string;
+  category_name: string;
   created_at: string;
+  description: string;
+  id: string;
+  transaction_date: string;
   updated_at: string;
-  category_id: string;
+  user_id: string;
+};
+
+export interface CreateTransactionReq {
+  user_category_id: string;
   description?: string;
   amount: number;
   transaction_date: string;
-  user_id: string;
-  category: Category;
-}
-
-export interface CreateTransactionReq {
-  category_id: string;
-  description?: string;
-  amount: number;
   user_id: string;
 }

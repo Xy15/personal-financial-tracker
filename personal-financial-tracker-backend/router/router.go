@@ -9,6 +9,8 @@ import (
 func SetupRoutes(app *fiber.App, db *gorm.DB) {
 	SetupSwagger(app)
 
+	UserRoutes(app, db)
+	UserCategoryRoutes(app, db)
 	TransactionRoutes(app, db)
 }
 

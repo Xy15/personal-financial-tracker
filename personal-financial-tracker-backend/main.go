@@ -4,6 +4,8 @@ import (
 	"os"
 	"personal-financial-tracker/router"
 
+	_ "personal-financial-tracker/docs"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"gorm.io/driver/mysql"
@@ -11,21 +13,29 @@ import (
 )
 
 var HOST string
-var MYSQL_DATABASE_URL string
+
+// var MYSQL_DATABASE_URL string
 var MYSQL_DSN string
 
 func LoadEnv() {
-	// err := godotenv.Load(path + ".env")
-	// if err != nil {
-	// 	logger.Log.Error(err)
-	// }
-
-	// var SECRET string
 	HOST = os.Getenv("HOST")
-	MYSQL_DATABASE_URL = os.Getenv("MYSQL_DATABASE_URL")
+	// MYSQL_DATABASE_URL = os.Getenv("MYSQL_DATABASE_URL")
 	MYSQL_DSN = os.Getenv("MYSQL_DSN")
 }
 
+// @title Personal Financial Tracker API
+// @version 2.0
+// @description This is a swagger for Personal Financial Tracker API
+// @termsOfService http://swagger.io/terms/
+// @contact.name xy
+// @contact.email chongxy1115@gmail.com
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host 127.0.0.1:8081
+// @securityDefinitions.apikey BearerTokenAuth
+// @in header
+// @name Authorization
+// @BasePath /
 func main() {
 	app := fiber.New(fiber.Config{
 		BodyLimit: 500 * 1024 * 1024, // 500 MB
@@ -50,7 +60,6 @@ func Initialize(app *fiber.App) {
 	var gdb *gorm.DB
 
 	gdb = ConnectDB()
-	// MigrateDB(gdb)
 
 	router.SetupRoutes(app, gdb)
 }
@@ -64,12 +73,3 @@ func ConnectDB() *gorm.DB {
 
 	return gdb
 }
-
-// func MigrateDB(gdb *gorm.DB) {
-// 	err := gdb.AutoMigrate(
-// 		model.Transaction{},
-// 	)
-// 	if err != nil {
-// 		panic("Failed to migrate database" + err.Error())
-// 	}
-// }

@@ -7,13 +7,10 @@ import (
 )
 
 type CategoryImage struct {
-	ImageID   uuid.UUID `json:"image_id" gorm:"type:uuid;primaryKey;unique;default: gen_random_uuid();"`
+	ID        uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;unique;default: gen_random_uuid();"`
 	CreatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 
-	Url string `json:"url"`
-}
-
-func (CategoryImage) TableName() string {
-	return "category_image"
+	CategoryID uuid.UUID `json:"category_id"`
+	ImageUrl   string    `json:"image_url"`
 }
