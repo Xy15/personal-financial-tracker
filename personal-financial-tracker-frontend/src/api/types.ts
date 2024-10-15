@@ -11,12 +11,12 @@ export interface CategoryImage {
   url: string;
 }
 
-export interface Category {
+export interface UserCategory {
+  id: string;
   created_at: string;
   updated_at: string;
-  category_id: string;
   user_id: string;
-  image_id: string;
+  category_image_id: string;
   name: string;
   type: string;
   category_image: CategoryImage;
