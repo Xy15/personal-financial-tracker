@@ -52,25 +52,30 @@ export default function Example() {
           </button>
         </div>
         <Menu>
-      <MenuButton>My account</MenuButton>
-      <MenuItems anchor="bottom">
-        <MenuItem>
-          <a className="block data-[focus]:bg-blue-100" href="/settings">
-            Settings
+          <MenuButton>My account</MenuButton>
+          <MenuItems anchor="bottom">
+            <MenuItem>
+              <a className="block data-[focus]:bg-blue-100" href="/settings">
+                Settings
+              </a>
+            </MenuItem>
+            <MenuItem>
+              <a className="block data-[focus]:bg-blue-100" href="/support">
+                Support
+              </a>
+            </MenuItem>
+            <MenuItem>
+              <a className="block data-[focus]:bg-blue-100" href="/license">
+                License
+              </a>
+            </MenuItem>
+          </MenuItems>
+        </Menu>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <a href="/create_transaction" className="text-sm font-semibold leading-6 text-gray-900">
+            Add Transaction <span aria-hidden="true">&rarr;</span>
           </a>
-        </MenuItem>
-        <MenuItem>
-          <a className="block data-[focus]:bg-blue-100" href="/support">
-            Support
-          </a>
-        </MenuItem>
-        <MenuItem>
-          <a className="block data-[focus]:bg-blue-100" href="/license">
-            License
-          </a>
-        </MenuItem>
-      </MenuItems>
-    </Menu>
+        </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Log in <span aria-hidden="true">&rarr;</span>
@@ -150,7 +155,9 @@ export default function Example() {
           </div>
         </DialogPanel>
       </Dialog> */}
-      <Outlet />
+      <div className='p-10'>
+        <Outlet />
+      </div>
     </header>
   )
 }

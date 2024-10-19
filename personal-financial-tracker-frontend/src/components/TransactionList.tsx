@@ -21,7 +21,7 @@ const TransactionList = () => {
         Object.keys(data?.data).map((date: string) => {
           const transactions: Transaction[] = data.data[date];
           return (
-            <div key={date} className="">
+            <div key={date}>
               <h3>{date}</h3>
               {transactions.map((tx) => {
                 const formattedTime = new Date(

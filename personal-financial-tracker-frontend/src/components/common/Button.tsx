@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 const Button = ({
-  type,
+  type = "button",
   onClick,
   disabled = false,
   className,
