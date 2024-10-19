@@ -4,10 +4,8 @@ import UserCategorySelection from "../UserCategorySelection";
 
 interface CategoryContextType {
   selectedCategory: string;
-  // setSelectedCategory: Dispatch<SetStateAction<string>>;
   onSelectCategory: (categoryID: string) => void;  // Update this line
   categoryType: CategoryType;
-  // setCategoryType: Dispatch<SetStateAction<CategoryType>>;
   onChangeCategoryType: () => void;
 }
 
@@ -29,10 +27,6 @@ const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ children })
   const onChangeCategoryType = () => {
     setCategoryType(prevType => (prevType === "Income" ? "Expense" : "Income"));
   };
-
-  useEffect(() => {
-    setSelectedCategory("");
-  }, [categoryType])
 
   return (
     <CategoryContext.Provider value={{ selectedCategory, onSelectCategory, categoryType, onChangeCategoryType }}>
