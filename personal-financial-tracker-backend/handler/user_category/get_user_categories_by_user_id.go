@@ -14,6 +14,7 @@ import (
 // @Tags User Category
 // @Accept json
 // @Produce json
+// @Param user_id path string true "User ID"
 // @Success 200 {object} response.Response{data=[]model.UserCategory} "Success"
 // @Failure 400 {object} response.Response "Bad request"
 // @Failure 404 {object} response.Response "Record not found"
