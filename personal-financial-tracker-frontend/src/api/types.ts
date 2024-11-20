@@ -1,14 +1,18 @@
+import { EnumType } from "typescript";
+
 export interface Response<T> {
   data: T;
   message: string;
   status: string;
 }
 
+export type CategoryType = "Income" | "Expense"
+
 export interface CategoryImage {
   created_at: string;
   updated_at: string;
   image_id: string;
-  url: string;
+  image_url: string;
 }
 
 export interface UserCategory {

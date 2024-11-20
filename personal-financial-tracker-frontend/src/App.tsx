@@ -6,6 +6,7 @@ import Layout from './layouts/Layout';
 import { Home } from './pages/Home';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from './api/queryClient';
+import CreateTransaction from './pages/CreateTransaction';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          {/* <Route path="menu" element={<Menu />} /> */}
+          <Route path="create_transaction" element={<CreateTransaction />} />
           {/* <Route path="blogs" element={<Blogs />} /> */}
           {/* <Route path="product/:id" element={<ProductDetail />} /> */}
           {/* <Route path="cart" element={<Cart />} /> */}
